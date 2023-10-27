@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.vishal.mad_practical_10_21012011043.PersonAdapter
+import com.diyachauhan.mad_practical_10_21012011011.PersonAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
