@@ -1,7 +1,9 @@
 package com.diyachauhan.mad_practical_10_21012011011
 
+import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -10,19 +12,25 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.diyachauhan.mad_practical_10_21012011011.databinding.ActivityMapsBinding
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
+    private var lat:Double = 0.0
+    private var log:Double = 0.0
+    private var title = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        val obj = intent.getSerializableExtra("Object") as Person
+        lat = obj.latitude
+        log = obj.longitude
+        title = obj.name
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -39,10 +47,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        mMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
+        val sydney = LatLng(lat,  log )
+        mMap.addMarker(MarkerOptions().position(sydney)
+            .title(title)
+            .snippet(title)
+            .icon(BitmapDescriptorFactory.fromResource(R.drawable.img))
+        )
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,16.0f))
     }
 }

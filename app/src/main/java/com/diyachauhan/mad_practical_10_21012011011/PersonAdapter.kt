@@ -22,7 +22,7 @@ class PersonAdapter(context: Context,val personArray:ArrayList<Person>):ArrayAda
         view.findViewById<TextView>(R.id.address).text = contact?.address
         view.findViewById<MaterialButton>(R.id.btnLocation).setOnClickListener{
              //Start the MapsActivity when button1 is clicked
-            val intent = Intent(context, MapsActivity::class.java)
+            val intent = Intent(context, MapsActivity::class.java).putExtra("Object",personArray[position])
             context.startActivity(intent)
         }
         return view
