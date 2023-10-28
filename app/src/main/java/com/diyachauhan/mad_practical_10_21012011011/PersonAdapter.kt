@@ -13,7 +13,7 @@ import com.diyachauhan.mad_practical_10_21012011011.Person
 import com.diyachauhan.mad_practical_10_21012011011.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class PersonAdapter(val context: Context,val personArray:ArrayList<Person>):ArrayAdapter<Person>(context,0,personArray)
+class PersonAdapter(context: Context,val personArray:ArrayList<Person>):ArrayAdapter<Person>(context,0,personArray)
 {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view=LayoutInflater.from(context).inflate(R.layout.person_item,parent,false)
